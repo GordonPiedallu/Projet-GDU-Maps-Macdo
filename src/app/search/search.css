@@ -1,0 +1,224 @@
+
+:host {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  color: #222222;
+  background: #ffffff;
+  border-radius: 7px;
+}
+
+/* Barre de recherche compacte */
+.recherche {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 7px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.recherche input {
+  flex: 1;
+  min-width: 0;
+  width: 0;
+  height: 30px;
+  box-sizing: border-box;
+  padding: 5px 8px;
+  border: 1px solid #bdbdbd;
+  border-radius: 3px;
+  outline-offset: 2px;
+  background: #ffffff;
+  color: #222222;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+
+.recherche input::placeholder {
+  color: #666666;
+  opacity: 1;
+}
+
+/* Loupe jaune */
+.recherche .bouton-recherche {
+  display: flex;
+  flex: 0 0 30px;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  padding: 0;
+  border: 1px solid #e0b900;
+  border-radius: 4px;
+  background: #ffd500;
+  color: #222222;
+  cursor: pointer;
+}
+
+.recherche .bouton-recherche:hover {
+  background: #f0c800;
+}
+
+.recherche .bouton-recherche:focus-visible {
+  outline: 2px solid #222222;
+  outline-offset: 2px;
+}
+
+/* Message de recherche ou de sélection */
+.message {
+  box-sizing: border-box;
+  max-height: 65px;
+  margin: 4px 0 0;
+  padding: 7px 8px;
+  overflow-y: auto;
+  overflow-wrap: anywhere;
+  background: #ffffff;
+  color: #222222;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  font-size: 11px;
+  line-height: 1.35;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.message:empty {
+  display: none;
+}
+
+/* Erreurs de validation */
+.erreur {
+  box-sizing: border-box;
+  margin: 4px 0 0;
+  padding: 7px 8px;
+  background: #fff0f0;
+  color: #b42318;
+  border: 1px solid #b42318;
+  border-radius: 4px;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+/* Liste des restaurants */
+.liste-resultats {
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 190px;
+  margin-top: 4px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  background: #ffffff;
+  border: 1px solid #d5d5d5;
+  border-radius: 5px;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15);
+}
+
+.liste-resultats:empty {
+  display: none;
+}
+
+/* Résultat individuel */
+.resultat {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 8px;
+  border: 0;
+  border-bottom: 1px solid #eeeeee;
+  border-radius: 0;
+  background: #ffffff;
+  color: #222222;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.35;
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.resultat:last-child {
+  border-bottom: none;
+}
+
+.resultat:hover {
+  background: #fff8d6;
+}
+
+/* Restaurant ciblé */
+.resultat.restaurant-actif {
+  background: #fff3b0;
+  color: #222222;
+  outline: 2px solid #222222;
+  outline-offset: -2px;
+  font-weight: 700;
+}
+
+/* Téléphones */
+@media (max-width: 600px) {
+  :host {
+    border-radius: 7px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .recherche {
+    gap: 5px;
+    padding: 5px;
+  }
+
+  .recherche input {
+    height: 34px;
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+
+  .recherche .bouton-recherche {
+    flex-basis: 34px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .message {
+    max-height: 58px;
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+
+  .liste-resultats {
+    max-height: min(160px, 22dvh);
+  }
+
+  .resultat {
+    padding: 8px;
+    font-size: 11px;
+    line-height: 1.3;
+  }
+}
+
+/* Très petits téléphones */
+@media (max-width: 360px) {
+  .recherche input {
+    font-size: 13px;
+  }
+
+  .liste-resultats {
+    max-height: 125px;
+  }
+
+  .resultat {
+    padding: 7px;
+    font-size: 10px;
+  }
+}

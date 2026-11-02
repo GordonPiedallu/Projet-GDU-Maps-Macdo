@@ -1,0 +1,69 @@
+
+<div class="recherche">
+  <input
+    type="text"
+    [formControl]="ville"
+    minlength="2"
+    placeholder="Rechercher un restaurant"
+    aria-label="Rechercher un restaurant"
+  >
+
+  <button
+    type="button"
+    class="bouton-recherche"
+    (click)="rechercheNominatim()"
+    aria-label="Lancer la recherche"
+    title="Rechercher"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      aria-hidden="true"
+    >
+      <circle
+        cx="10.5"
+        cy="10.5"
+        r="6.5"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+      />
+      <path
+        d="M15.5 15.5 L21 21"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+      />
+    </svg>
+  </button>
+</div>
+
+@if (ville.touched && ville.invalid) {
+  <p class="erreur">
+    @if (ville.hasError('required')) {
+      Veuillez saisir une ville.
+    } @else if (ville.hasError('minlength')) {
+      La ville doit contenir au moins 2 caractères.
+    }
+  </p>
+}
+
+@if (message) {
+  <p class="message">{{ message }}</p>
+}
+
+<div class="liste-resultats">
+  @for (resultat of response(); track resultat.place_id) {
+    <button
+      type="button"
+      class="resultat"
+      [class.restaurant-actif]="villeSelectionner()?.place_id === resultat.place_id"
+      [attr.aria-pressed]="villeSelectionner()?.place_id === resultat.place_id"
+      (click)="selectionnerVille(resultat)"
+    >
+      {{ resultat.display_name }}
+    </button>
+  }
+</div>

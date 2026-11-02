@@ -1,0 +1,299 @@
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+app-search {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  display: block;
+  width: 320px;
+  max-width: calc(100% - 40px);
+  max-height: calc(100dvh - 100px);
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+:host ::ng-deep .leaflet-top,
+:host ::ng-deep .leaflet-bottom {
+  z-index: 1100;
+}
+
+:host ::ng-deep .leaflet-top.leaflet-left {
+  left: auto;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+:host ::ng-deep .leaflet-control-zoom {
+  border: 1px solid #222222 !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+:host ::ng-deep .leaflet-control-zoom a {
+  width: 38px !important;
+  height: 38px !important;
+  line-height: 38px !important;
+  background: #ffffff !important;
+  color: #222222 !important;
+  font-size: 22px !important;
+}
+
+:host ::ng-deep .leaflet-control-zoom a:hover {
+  background: #ffd500 !important;
+}
+
+:host ::ng-deep .leaflet-popup-pane {
+  z-index: 600;
+}
+
+:host ::ng-deep .leaflet-popup-content-wrapper {
+  background: #ffffff;
+  color: #222222;
+  border-radius: 10px;
+}
+
+:host ::ng-deep .leaflet-popup-content {
+  max-width: 240px;
+  margin: 12px;
+  overflow-wrap: anywhere;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+:host ::ng-deep .leaflet-popup-content button {
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 1px solid #222222;
+  border-radius: 5px;
+  background: #ffd500;
+  color: #222222;
+  font-weight: 700;
+}
+
+.bandeau-statut {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 12px 16px;
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+  background: #ffffff;
+  color: #222222;
+  border-top: 1px solid #dddddd;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.confirmation {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2000;
+  width: 360px;
+  max-width: calc(100% - 32px);
+  max-height: calc(100dvh - 40px);
+  box-sizing: border-box;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 20px;
+  background: #ffffff;
+  color: #222222;
+  border: 1px solid #dddddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  font-family: Arial, sans-serif;
+}
+
+.poignee-panneau {
+  display: none;
+}
+
+.confirmation h2 {
+  margin: 0 0 14px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.confirmation p {
+  margin: 10px 0;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.actions-confirmation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.confirmation .actions-confirmation button {
+  min-height: 42px;
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid #222222;
+  border-radius: 6px;
+  background: #ffd500;
+  color: #222222;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.confirmation .actions-confirmation button:hover {
+  background: #f0c800;
+}
+
+@media (max-width: 600px) {
+  app-search {
+    top: max(8px, env(safe-area-inset-top));
+    left: 10px;
+    width: calc(100% - 20px);
+    max-width: none;
+    max-height: calc(100dvh - 90px);
+  }
+
+  .bandeau-statut {
+    padding: 9px 12px;
+    padding-bottom: max(9px, env(safe-area-inset-bottom));
+    font-size: 12px;
+  }
+
+  .confirmation {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    max-width: none;
+    max-height: 75dvh;
+    padding: 10px 18px calc(16px + env(safe-area-inset-bottom));
+    overflow-y: auto;
+    border: 0;
+    border-top: 1px solid #dddddd;
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.18);
+    transition: max-height 0.25s ease;
+  }
+
+  .poignee-panneau {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 24px;
+    margin: 0 0 8px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .poignee-panneau span {
+    display: block;
+    width: 38px;
+    height: 4px;
+    border-radius: 99px;
+    background: #c7c7c7;
+  }
+
+  .confirmation h2 {
+    margin: 0 0 12px;
+    font-size: 16px;
+  }
+
+  .confirmation p {
+    margin: 8px 0;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .actions-confirmation {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .confirmation .actions-confirmation button {
+    flex: 1;
+    min-height: 44px;
+    margin: 0;
+    padding: 10px 12px;
+  }
+
+  .confirmation.panneau-replie {
+    max-height: 92px;
+    overflow: hidden;
+  }
+
+  .confirmation.panneau-replie h2 {
+    margin-bottom: 0;
+  }
+
+  .confirmation.panneau-replie .details-restaurant,
+  .confirmation.panneau-replie .bouton-annuler {
+    display: none;
+  }
+
+  .confirmation.panneau-replie .actions-confirmation {
+    margin-top: 8px;
+  }
+
+  :host ::ng-deep .leaflet-popup-content {
+    max-width: 200px;
+    margin: 10px;
+    font-size: 12px;
+  }
+
+  :host ::ng-deep .leaflet-top.leaflet-left {
+    right: 10px;
+    top: auto;
+    bottom: 80px;
+    transform: none;
+  }
+
+  :host ::ng-deep .leaflet-control-zoom a {
+    width: 42px !important;
+    height: 42px !important;
+    line-height: 42px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  app-search {
+    left: 8px;
+    width: calc(100% - 16px);
+  }
+
+  .confirmation {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .confirmation .actions-confirmation button {
+    padding: 9px;
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,69 @@
+
+<app-search
+  (villeSelection)="recevoirVille($event)"
+  (restaurantCible)="centrerSurRestaurant($event)">
+</app-search>
+
+<app-map
+  [villeSelection]="villeSelection"
+  [restaurantCible]="restaurantCible"
+  (restaurantSelectionne)="confirmationOuverte = true; panneauReplie = false">
+</app-map>
+
+@if (!(confirmationOuverte && selectionService.restaurantSelectionne())) {
+  <div class="bandeau-statut">
+    @if (selectionService.restaurantSelectionne(); as restaurant) {
+      <span>
+        Restaurant sélectionné : {{ restaurant.display_name }}
+      </span>
+    } @else {
+      <span>Aucun restaurant sélectionné</span>
+    }
+  </div>
+}
+
+@if (confirmationOuverte && selectionService.restaurantSelectionne(); as restaurant) {
+  <div
+    class="confirmation"
+    [class.panneau-replie]="panneauReplie">
+
+    <button
+      type="button"
+      class="poignee-panneau"
+      aria-label="Déplier ou réduire le panneau"
+      [attr.aria-expanded]="!panneauReplie"
+      (click)="panneauReplie = !panneauReplie">
+      <span></span>
+    </button>
+
+    <h2>Confirmer votre restaurant</h2>
+
+    <div class="details-restaurant">
+      <p>
+        <strong>Nom :</strong>
+        {{ restaurant.name || restaurant.display_name }}
+      </p>
+
+      <p>
+        <strong>Adresse :</strong>
+        {{ restaurant.display_name }}
+      </p>
+    </div>
+
+    <div class="actions-confirmation">
+      <button
+        type="button"
+        class="bouton-annuler"
+        (click)="annulerSelection()">
+        Annuler
+      </button>
+
+      <button
+        type="button"
+        class="bouton-continuer"
+        (click)="continuer()">
+        Continuer
+      </button>
+    </div>
+  </div>
+}
